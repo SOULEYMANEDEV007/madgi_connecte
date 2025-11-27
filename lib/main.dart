@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'onboringscreen.dart';
-import 'home.dart';
-import 'manual.dart';
-import 'scanner.dart';
+import 'pages/onboringscreen.dart';
+import 'pages/home.dart';
+import 'pages/manual.dart';
+import 'pages/scanner.dart';
 
 void main() {
   runApp(const MadgiConnectApp());
