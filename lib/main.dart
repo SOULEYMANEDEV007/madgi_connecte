@@ -25,7 +25,7 @@ class MadgiConnectApp extends StatelessWidget {
       routes: {
         "/home": (_) => const HomePage(),
         "/manual": (_) => const ManualRegisterPage(),
-        "/scanner": (_) => const ScannerScreen(),
+        "/scanner": (_) => const QRGeneratorScreen(),
       },
 
       debugShowCheckedModeBanner: false,

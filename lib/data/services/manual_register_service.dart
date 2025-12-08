@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import '../models/manual_register_model.dart';
 
 class ManualRegisterService {
-  final String baseUrl = "http://192.168.1.8:8000/api/v1/emarger";
+  final String baseUrl = "http://192.168.1.5:8000/api/v1/emarger";
 
   Future<Map<String, dynamic>> registerManual(ManualRegisterModel data) async {
     try {
