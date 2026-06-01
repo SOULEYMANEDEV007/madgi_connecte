@@ -2,9 +2,10 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/manual_register_model.dart';
+import '../../core/config/api_config.dart';
 
 class ManualRegisterService {
-  final String baseUrl = "http://192.168.1.5:8000/api/v1/emarger";
+  final String baseUrl = ApiConfig.emarger;
 
   Future<Map<String, dynamic>> registerManual(ManualRegisterModel data) async {
     try {
@@ -18,6 +19,7 @@ class ManualRegisterService {
       }
 
       var uri = Uri.parse(baseUrl);
+      print("🚀 [ManualRegisterService] Envoi de la requête vers : $uri");
       var request = http.MultipartRequest("POST", uri);
 
       // Champs
@@ -37,7 +39,8 @@ class ManualRegisterService {
         "status": response.statusCode,
         "code": decoded["code"],
         "message": decoded["message"] ?? "",
-        "data": decoded["data"] ?? null,
+        "data": decoded["data"],
+        "justification_required": decoded["justification_required"] ?? false,
       };
     } catch (e) {
       return {

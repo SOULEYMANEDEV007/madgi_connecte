@@ -11,23 +11,28 @@ void main() {
 class MadgiConnectApp extends StatelessWidget {
   const MadgiConnectApp({super.key});
 
+  static const Color orange = Color(0xFFFF9900);
+  static const Color vert   = Color(0xFF3CA55C);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Madgi Connect',
+      title: 'Madgi Connecte',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: orange,
+          primary: orange,
+          secondary: vert,
+        ),
+        useMaterial3: true,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-
-      home: const HomePage(),
-
+      home: const OnboardingPage(),
       routes: {
-        "/home": (_) => const HomePage(),
-        "/manual": (_) => const ManualRegisterPage(),
+        "/home":    (_) => const HomePage(),
+        "/manual":  (_) => const ManualRegisterPage(),
         "/scanner": (_) => const QRGeneratorScreen(),
       },
-
       debugShowCheckedModeBanner: false,
     );
   }

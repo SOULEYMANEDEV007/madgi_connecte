@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import '../models/scanner_model.dart';
+import '../../core/config/api_config.dart';
 
 class ScannerService {
-  final String apiUrl = "http://192.168.1.5:8000/api/v1/emarger";
+  final String apiUrl = ApiConfig.emarger;
 
   Future<Map<String, dynamic>> scan(ScannerModel data) async {
     try {
@@ -19,6 +20,7 @@ class ScannerService {
       }
 
       var uri = Uri.parse(apiUrl);
+      print("🚀 [ScannerService] Envoi de la requête vers : $uri");
       var request = http.MultipartRequest("POST", uri);
 
       // Champs
