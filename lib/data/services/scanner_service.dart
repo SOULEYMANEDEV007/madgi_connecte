@@ -20,7 +20,6 @@ class ScannerService {
       }
 
       var uri = Uri.parse(apiUrl);
-      print("🚀 [ScannerService] Envoi de la requête vers : $uri");
       var request = http.MultipartRequest("POST", uri);
 
       // Champs

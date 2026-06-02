@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
                   "Madgi Connecte",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: isTablet ? 28 : 22,
+                    fontSize: isTablet ? 32 : 24,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -91,7 +91,7 @@ class HomePage extends StatelessWidget {
                       Text(
                         "Bienvenue !",
                         style: TextStyle(
-                          fontSize: isTablet ? 24 : 20,
+                          fontSize: isTablet ? 32 : 24,
                           color: vert,
                           fontWeight: FontWeight.bold,
                         ),
@@ -100,7 +100,7 @@ class HomePage extends StatelessWidget {
                       Text(
                         "Choisissez votre méthode d'enregistrement",
                         style: TextStyle(
-                          fontSize: isTablet ? 17 : 14,
+                          fontSize: isTablet ? 32 : 24,
                           color: gris,
                         ),
                       ),
@@ -232,7 +232,7 @@ class HomePage extends StatelessWidget {
                     title,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: isTablet ? 24 : 18,
+                      fontSize: isTablet ? 32 : 24,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -242,7 +242,7 @@ class HomePage extends StatelessWidget {
                     subtitle,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: isTablet ? 15 : 12,
+                      fontSize: isTablet ? 22 : 18,
                       color: Colors.white.withValues(alpha: 0.85),
                     ),
                   ),

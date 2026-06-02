@@ -19,12 +19,24 @@ class ManualRegisterService {
       }
 
       var uri = Uri.parse(baseUrl);
-      print("🚀 [ManualRegisterService] Envoi de la requête vers : $uri");
       var request = http.MultipartRequest("POST", uri);
 
       // Champs
       request.fields["matricule"] = data.matricule;
       request.fields["observation"] = data.observation;
+      
+      // Ajouter les justificatifs si présents
+      if (data.avecJustificatif) {
+        request.fields["avec_justificatif"] = "1";
+      }
+      
+      if (data.justificatifArrive != null && data.justificatifArrive!.isNotEmpty) {
+        request.fields["justificatif_arrive"] = data.justificatifArrive!;
+      }
+      
+      if (data.justificatifDepart != null && data.justificatifDepart!.isNotEmpty) {
+        request.fields["justificatif_depart"] = data.justificatifDepart!;
+      }
 
       // Image
       request.files.add(await http.MultipartFile.fromPath("image", data.imagePath));

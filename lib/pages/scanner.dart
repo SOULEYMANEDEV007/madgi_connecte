@@ -36,7 +36,6 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
     setState(() { isLoading = true; errorMsg = ""; });
 
     try {
-      print("🚀 [Scanner] Génération QR code depuis : ${ApiConfig.generateQr}");
       final response = await http.get(
         Uri.parse(ApiConfig.generateQr),
         headers: {'Accept': 'application/json'},
@@ -55,20 +54,20 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
         } else {
           setState(() {
             isLoading = false;
-            errorMsg  = body['message'] ?? "Réponse inattendue";
+            errorMsg  = body['message'] ?? "Service temporairement indisponible";
           });
         }
       } else {
         setState(() {
           isLoading = false;
-          errorMsg  = "Erreur serveur (${response.statusCode})";
+          errorMsg  = "Service temporairement indisponible";
         });
       }
     } catch (e) {
       if (!mounted) return;
       setState(() {
         isLoading = false;
-        errorMsg  = e.toString();
+        errorMsg  = "Impossible de se connecter au serveur";
       });
     }
   }
@@ -93,7 +92,7 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w600,
-            fontSize: isTablet ? 22 : 18,
+            fontSize: isTablet ? 28 : 22,
           ),
         ),
         backgroundColor: vert,
@@ -120,7 +119,7 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
                 "Présentez ce QR code pour le pointage",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: isTablet ? 24 : 16,
+                  fontSize: isTablet ? 32 : 24,
                   fontWeight: FontWeight.bold,
                   color: vert,
                 ),
@@ -130,7 +129,7 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
                 "Rafraîchi toutes les 5 secondes",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: isTablet ? 16 : 12,
+                  fontSize: isTablet ? 24 : 18,
                   color: Colors.grey[600],
                 ),
               ),

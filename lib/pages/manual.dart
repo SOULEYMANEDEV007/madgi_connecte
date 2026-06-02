@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:async';
-import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -31,7 +30,6 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
   late Animation<double> _fadeAnimation;
-  late Animation<double> _rotationAnimation;
 
   bool isObservationRequired = false;
 
@@ -46,9 +44,6 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
       CurvedAnimation(parent: _animationController, curve: Curves.elasticOut),
     );
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
-    );
-    _rotationAnimation = Tween<double>(begin: 0.0, end: 2 * pi).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
     );
   }
@@ -76,7 +71,7 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
 
     return await showDialog<String?>(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.8),
+      barrierColor: Colors.black.withValues(alpha: 0.8),
       barrierDismissible: true,
       builder: (ctx) {
         return StatefulBuilder(
@@ -104,12 +99,12 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
                         borderRadius: BorderRadius.circular(32),
                         boxShadow: [
                           BoxShadow(
-                            color: (isRetard ? errorGradientEnd : warningGradientEnd).withOpacity(0.4),
+                            color: (isRetard ? errorGradientEnd : warningGradientEnd).withValues(alpha: 0.4),
                             blurRadius: 30,
                             spreadRadius: 5,
                           ),
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.3),
+                            color: Colors.black.withValues(alpha: 0.3),
                             blurRadius: 20,
                             offset: const Offset(0, 10),
                           ),
@@ -126,7 +121,7 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
                                 height: 100,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  border: Border.all(color: Colors.white.withOpacity(0.3), width: 2),
+                                  border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 2),
                                 ),
                               ),
                               Container(
@@ -135,10 +130,10 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   gradient: LinearGradient(
-                                    colors: [Colors.white.withOpacity(0.9), Colors.white.withOpacity(0.6)],
+                                    colors: [Colors.white.withValues(alpha: 0.9), Colors.white.withValues(alpha: 0.6)],
                                   ),
                                   boxShadow: [
-                                    BoxShadow(color: Colors.white.withOpacity(0.5), blurRadius: 20, spreadRadius: 5),
+                                    BoxShadow(color: Colors.white.withValues(alpha: 0.5), blurRadius: 20, spreadRadius: 5),
                                   ],
                                 ),
                               ),
@@ -149,7 +144,7 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
                                   shape: BoxShape.circle,
                                   color: Colors.white,
                                   boxShadow: [
-                                    BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: const Offset(0, 5)),
+                                    BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 10, offset: const Offset(0, 5)),
                                   ],
                                 ),
                                 child: Center(
@@ -165,26 +160,26 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
                               color: Colors.white,
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
-                              shadows: [Shadow(color: Colors.black.withOpacity(0.3), blurRadius: 10, offset: const Offset(0, 2))],
+                              shadows: [Shadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 10, offset: const Offset(0, 2))],
                             ),
                           ),
                           const SizedBox(height: 16),
                           Text(
                             message,
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 16, fontWeight: FontWeight.w500),
+                            style: TextStyle(color: Colors.white.withValues(alpha: 0.9), fontSize: 24, fontWeight: FontWeight.w500),
                           ),
                           const SizedBox(height: 24),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text('Justificatif :', style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
+                              const Text('Justificatif :', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600)),
                               const SizedBox(height: 8),
                               Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.2),
+                                  color: Colors.white.withValues(alpha: 0.2),
                                   borderRadius: BorderRadius.circular(12),
-                                  border: Border.all(color: Colors.white.withOpacity(0.3)),
+                                  border: Border.all(color: Colors.white.withValues(alpha: 0.3)),
                                 ),
                                 child: TextField(
                                   controller: justificatifCtrl,
@@ -193,7 +188,7 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
                                   style: const TextStyle(color: Colors.white, fontSize: 14),
                                   decoration: InputDecoration(
                                     hintText: 'Saisissez votre justificatif ici...',
-                                    hintStyle: TextStyle(color: Colors.white.withOpacity(0.6)),
+                                    hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.6)),
                                     border: InputBorder.none,
                                     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                                   ),
@@ -207,7 +202,7 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
                               children: [
                                 const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
                                 const SizedBox(height: 16),
-                                Text('Traitement en cours...', style: TextStyle(color: Colors.white.withOpacity(0.9))),
+                                Text('Traitement en cours...', style: TextStyle(color: Colors.white.withValues(alpha: 0.9))),
                               ],
                             )
                           else
@@ -217,7 +212,7 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(16),
-                                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: const Offset(0, 5))],
+                                      boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 10, offset: const Offset(0, 5))],
                                     ),
                                     child: ElevatedButton(
                                       onPressed: () {
@@ -229,7 +224,7 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
                                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                                       ),
-                                      child: const Text('ANNULER', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                                      child: const Text('ANNULER', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                                     ),
                                   ),
                                 ),
@@ -238,7 +233,7 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(16),
-                                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: const Offset(0, 5))],
+                                      boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 10, offset: const Offset(0, 5))],
                                     ),
                                     child: ElevatedButton(
                                       onPressed: () {
@@ -260,7 +255,7 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
                                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                                       ),
-                                      child: const Text('ENVOYER', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                                      child: const Text('ENVOYER', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                                     ),
                                   ),
                                 ),
@@ -279,14 +274,14 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
     );
   }
 
-  Future showSuccessPopup({required String title, required String message}) {
+  Future<void> showErrorPopup({required String title, required String message}) {
     _animationController.reset();
     _animationController.forward();
 
     return showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.7),
-      barrierDismissible: true,
+      barrierColor: Colors.black.withValues(alpha: 0.7),
+      barrierDismissible: false,
       builder: (ctx) {
         return AnimatedBuilder(
           animation: _animationController,
@@ -301,112 +296,329 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
                   child: Opacity(
                     opacity: _fadeAnimation.value,
                     child: Container(
-                      width: 320,
                       padding: const EdgeInsets.all(32),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [errorGradientStart, errorGradientEnd],
+                        ),
+                        borderRadius: BorderRadius.circular(24),
+                        boxShadow: [
+                          BoxShadow(color: errorGradientEnd.withValues(alpha: 0.4), blurRadius: 30, spreadRadius: 5),
+                          BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 20, offset: const Offset(0, 10)),
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            width: 80,
+                            height: 80,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.2),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.error_outline, color: Colors.white, size: 48),
+                          ),
+                          const SizedBox(height: 24),
+                          Text(
+                            title,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                            message,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white.withValues(alpha: 0.95),
+                              fontSize: 22,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 32),
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                _animationController.reverse().then((_) => Navigator.of(ctx).pop());
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                foregroundColor: errorGradientEnd,
+                                padding: const EdgeInsets.symmetric(vertical: 20),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                              ),
+                              child: const Text(
+                                'OK',
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  String _formatDate(String? dateStr) {
+    if (dateStr == null || dateStr.isEmpty) return '';
+    
+    try {
+      DateTime date = DateTime.parse(dateStr);
+      const months = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'];
+      String day = date.day.toString().padLeft(2, '0');
+      String month = months[date.month - 1];
+      String year = date.year.toString();
+      return '$day-$month-$year';
+    } catch (e) {
+      return dateStr;
+    }
+  }
+
+  Future showSuccessPopup({required String title, required String message, dynamic pointageData}) {
+    _animationController.reset();
+    _animationController.forward();
+
+    bool hasData = pointageData != null && pointageData is Map;
+    String nom = hasData ? (pointageData['nom'] ?? pointageData['nom_employe'] ?? '') : '';
+    String prenom = hasData ? (pointageData['prenom'] ?? pointageData['prenom_employe'] ?? '') : '';
+    String civilite = hasData ? (pointageData['civilite'] ?? '') : '';
+    
+    // Si nom et prenom sont vides, essayer d'extraire depuis le message
+    if ((nom.isEmpty || nom == 'null') && (prenom.isEmpty || prenom == 'null')) {
+      // Extraire depuis le message si format "pour Nom Prenom" ou "de Nom Prenom"
+      if (message.contains(' pour ')) {
+        final parts = message.split(' pour ');
+        if (parts.length > 1) {
+          final namePart = parts[1].trim().replaceAll('.', '');
+          nom = namePart;
+        }
+      } else if (message.contains(' de ')) {
+        final parts = message.split(' de ');
+        if (parts.length > 1) {
+          final namePart = parts[1].trim().replaceAll('.', '');
+          nom = namePart;
+        }
+      }
+    }
+    
+    // Si nom et prenom sont vides, ne pas afficher juste la civilité
+    String displayName = '';
+    if (nom.isNotEmpty && nom != 'null') {
+      if (prenom.isNotEmpty && prenom != 'null') {
+        displayName = civilite.isNotEmpty ? '$civilite $nom $prenom'.trim() : '$nom $prenom'.trim();
+      } else {
+        displayName = civilite.isNotEmpty ? '$civilite $nom'.trim() : nom;
+      }
+    }
+    
+    bool isDepart = false;
+    if (message.toLowerCase().contains('au revoir') || 
+        message.toLowerCase().contains('départ') || 
+        (hasData && pointageData['heure_depart'] != null)) {
+      isDepart = true;
+    }
+
+    String titleMessage = displayName.isNotEmpty
+        ? (isDepart ? "Au revoir $displayName" : "Bienvenue $displayName")
+        : (isDepart ? "Au revoir" : "Bienvenue");
+
+    return showDialog(
+      context: context,
+      barrierColor: Colors.black.withValues(alpha: 0.7),
+      barrierDismissible: false,
+      builder: (ctx) {
+        return AnimatedBuilder(
+          animation: _animationController,
+          builder: (context, child) {
+            return BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              child: Dialog(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                child: Transform.scale(
+                  scale: _scaleAnimation.value,
+                  child: Opacity(
+                    opacity: _fadeAnimation.value,
+                    child: Container(
+                      padding: const EdgeInsets.all(24),
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [Color(0xFF00B09B), Color(0xFF96C93D)],
                         ),
-                        borderRadius: BorderRadius.circular(32),
+                        borderRadius: BorderRadius.circular(20),
                         boxShadow: [
-                          BoxShadow(color: const Color(0xFF96C93D).withOpacity(0.4), blurRadius: 30, spreadRadius: 5),
-                          BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20, offset: const Offset(0, 10)),
+                          BoxShadow(color: const Color(0xFF96C93D).withValues(alpha: 0.4), blurRadius: 30, spreadRadius: 5),
+                          BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 20, offset: const Offset(0, 10)),
                         ],
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                width: 120,
-                                height: 120,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(color: Colors.white.withOpacity(0.3), width: 2),
-                                ),
-                              ),
-                              Transform.rotate(
-                                angle: _rotationAnimation.value,
-                                child: Container(
-                                  width: 100,
-                                  height: 100,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    gradient: LinearGradient(
-                                      colors: [Colors.white.withOpacity(0.9), Colors.white.withOpacity(0.6)],
-                                    ),
-                                    boxShadow: [BoxShadow(color: Colors.white.withOpacity(0.5), blurRadius: 20, spreadRadius: 5)],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 80,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10, offset: const Offset(0, 5))],
-                                ),
-                                child: const Center(child: Text('🎉', style: TextStyle(fontSize: 40))),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 24),
-                          AnimatedOpacity(
-                            opacity: _animationController.value > 0.5 ? 1.0 : 0.0,
-                            duration: const Duration(milliseconds: 300),
-                            child: Transform.translate(
-                              offset: Offset(0, _animationController.value > 0.5 ? 0 : 20),
-                              child: Text(
-                                title,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.bold,
-                                  shadows: [Shadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: const Offset(0, 2))],
-                                ),
-                              ),
+                          Container(
+                            width: 80,
+                            height: 80,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.2),
+                              shape: BoxShape.circle,
                             ),
+                            child: const Icon(Icons.check_circle, color: Colors.white, size: 48),
                           ),
                           const SizedBox(height: 16),
-                          AnimatedOpacity(
-                            opacity: _animationController.value > 0.7 ? 1.0 : 0.0,
-                            duration: const Duration(milliseconds: 300),
-                            child: Transform.translate(
-                              offset: Offset(0, _animationController.value > 0.7 ? 0 : 20),
-                              child: Text(
-                                message,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 16, fontWeight: FontWeight.w500),
-                              ),
+                          Text(
+                            titleMessage,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(height: 32),
-                          AnimatedOpacity(
-                            opacity: _animationController.value > 0.9 ? 1.0 : 0.0,
-                            duration: const Duration(milliseconds: 300),
-                            child: Transform.translate(
-                              offset: Offset(0, _animationController.value > 0.9 ? 0 : 20),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
-                                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: const Offset(0, 5))],
-                                ),
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    _animationController.reverse().then((_) => Navigator.of(ctx).pop());
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.white,
-                                    foregroundColor: const Color(0xFF96C93D),
-                                    padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 16),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                          if (message.isNotEmpty && message != 'Pointage validé') ...[
+                            const SizedBox(height: 8),
+                            Text(
+                              message,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white.withValues(alpha: 0.9),
+                                fontSize: 20,
+                              ),
+                            ),
+                          ],
+                          if (hasData) ...[
+                            const SizedBox(height: 16),
+                            Container(
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.2),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Icon(Icons.person, color: Colors.white, size: 26),
+                                      const SizedBox(width: 8),
+                                      Expanded(
+                                        child: Text(
+                                          '${pointageData['civilite'] ?? ''} ${nom} ${prenom}'.trim(),
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  child: const Text('CONTINUER', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                                  const SizedBox(height: 12),
+                                  Row(
+                                    children: [
+                                      const Icon(Icons.calendar_today, color: Colors.white, size: 26),
+                                      const SizedBox(width: 8),
+                                      Expanded(
+                                        child: Text(
+                                          'Date: ${_formatDate(pointageData['date'])}',
+                                          style: TextStyle(color: Colors.white.withValues(alpha: 0.9)),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Row(
+                                    children: [
+                                      const Icon(Icons.login, color: Colors.white, size: 26),
+                                      const SizedBox(width: 8),
+                                      Expanded(
+                                        child: Text(
+                                          'Arrivée: ${pointageData['heure_arrive'] ?? ''}',
+                                          style: TextStyle(color: Colors.white.withValues(alpha: 0.9)),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  if (pointageData['heure_depart'] != null) ...[
+                                    const SizedBox(height: 8),
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.logout, color: Colors.white, size: 26),
+                                        const SizedBox(width: 8),
+                                        Expanded(
+                                          child: Text(
+                                            'Départ: ${pointageData['heure_depart']}',
+                                            style: TextStyle(color: Colors.white.withValues(alpha: 0.9)),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                  if (pointageData['est_en_retard'] == true) ...[
+                                    const SizedBox(height: 8),
+                                    Container(
+                                      padding: const EdgeInsets.all(6),
+                                      decoration: BoxDecoration(
+                                        color: orange.withValues(alpha: 0.3),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.warning, color: orange, size: 24),
+                                          const SizedBox(width: 4),
+                                          Text(
+                                            'Retard signalé',
+                                            style: TextStyle(
+                                              color: orange,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ],
+                              ),
+                            ),
+                          ],
+                          const SizedBox(height: 24),
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                _animationController.reverse().then((_) => Navigator.of(ctx).pop());
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                foregroundColor: const Color(0xFF96C93D),
+                                padding: const EdgeInsets.symmetric(vertical: 14),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              child: const Text(
+                                'CONTINUER',
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
@@ -426,13 +638,9 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
 
   Future submit() async {
     if (matriculeCtrl.text.isEmpty || selectedImage == null) {
-      await showDialog(
-        context: context,
-        builder: (_) => AlertDialog(
-          title: const Text("Champs manquants", style: TextStyle(color: Colors.red)),
-          content: const Text("Veuillez remplir les champs obligatoires."),
-          actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text("OK"))],
-        ),
+      await showErrorPopup(
+        title: "Champs manquants",
+        message: "Veuillez remplir les champs obligatoires.",
       );
       return;
     }
@@ -450,20 +658,34 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
     );
 
     var response = await service.registerManual(model);
+    if (!mounted) return;
     Navigator.pop(context);
 
-    final bool success = response["code"] == 200;
-    String message = response["message"] ?? "Erreur inconnue";
-    final bool justificationRequired = (response["justification_required"] == true) || 
-                                       message.toLowerCase().contains('retard') || 
-                                       message.toLowerCase().contains('anticipé');
+    // 🔍 DEBUG TEMPORAIRE
+    debugPrint('========= RÉPONSE BACKEND =========');
+    debugPrint('CODE: ${response["code"]}');
+    debugPrint('MESSAGE: ${response["message"]}');
+    debugPrint('JUSTIFICATION_REQUIRED: ${response["justification_required"]}');
+    debugPrint('DATA: ${response["data"]}');
+    if (response["data"] != null && response["data"] is Map) {
+      debugPrint('EST_EN_RETARD: ${response["data"]["est_en_retard"]}');
+    }
+    debugPrint('===================================');
 
-    if (success) {
-      message = _formatSuccessMessage(message, response["data"]);
-      await showSuccessPopup(title: "ENREGISTRÉ !", message: message);
-      setState(() { matriculeCtrl.clear(); observationCtrl.clear(); selectedImage = null; });
-    } else if (justificationRequired) {
-      final bool isRetard = message.toLowerCase().contains('retard');
+    final int code = response["code"] ?? 500;
+    String message = response["message"] ?? "Erreur inconnue";
+    final bool justificationRequired = response["justification_required"] == true;
+    final dynamic data = response["data"];
+    
+    // Vérifier si c'est un retard même avec code 200
+    bool isRetardDetected = false;
+    if (data != null && data is Map && data["est_en_retard"] == true) {
+      isRetardDetected = true;
+    }
+
+    // CAS 1 : Retard détecté (soit code 403, soit est_en_retard = true)
+    if ((code == 403 && justificationRequired) || (code == 200 && isRetardDetected && justificationRequired)) {
+      final bool isRetard = message.toLowerCase().contains('retard') || isRetardDetected;
       final String? justificatif = await _showErrorWithJustificatifPopup(
         title: isRetard ? 'RETARD DÉTECTÉ' : 'DÉPART ANTICIPÉ',
         message: message,
@@ -471,6 +693,7 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
       );
 
       if (justificatif != null && justificatif.isNotEmpty) {
+        if (!mounted) return;
         showDialog(
           barrierDismissible: false,
           context: context,
@@ -479,11 +702,15 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
 
         ManualRegisterModel modelWithJustificatif = ManualRegisterModel(
           matricule: matriculeCtrl.text.trim(),
-          observation: justificatif,
+          observation: observationCtrl.text.trim(),
           imagePath: selectedImage!.path,
+          justificatifArrive: isRetard ? justificatif : null,
+          justificatifDepart: !isRetard ? justificatif : null,
+          avecJustificatif: true,
         );
 
         var newResponse = await service.registerManual(modelWithJustificatif);
+        if (!mounted) return;
         Navigator.pop(context);
 
         final bool newSuccess = newResponse["code"] == 200;
@@ -491,53 +718,36 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
 
         if (newSuccess) {
           newMessage = _formatSuccessMessage(newMessage, newResponse["data"]);
-          await showSuccessPopup(title: "ENREGISTRÉ AVEC JUSTIFICATIF", message: newMessage);
+          await showSuccessPopup(title: "ENREGISTRÉ AVEC JUSTIFICATIF", message: newMessage, pointageData: newResponse["data"]);
           setState(() { matriculeCtrl.clear(); observationCtrl.clear(); selectedImage = null; });
         } else {
-          await showDialog(
-            context: context,
-            builder: (_) => AlertDialog(
-              title: const Text("Échec", style: TextStyle(color: Colors.red)),
-              content: Text(newMessage),
-              actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text("OK"))],
-            ),
+          await showErrorPopup(
+            title: "Échec",
+            message: newMessage,
           );
         }
       }
-    } else {
-      await showDialog(
-        context: context,
-        builder: (_) => AlertDialog(
-          title: const Text("Échec", style: TextStyle(color: Colors.red)),
-          content: Text(message),
-          actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text("OK"))],
-        ),
+    }
+    // CAS 2 : Succès (code 200 sans retard)
+    else if (code == 200) {
+      message = _formatSuccessMessage(message, response["data"]);
+      await showSuccessPopup(title: "ENREGISTRÉ !", message: message, pointageData: response["data"]);
+      setState(() { matriculeCtrl.clear(); observationCtrl.clear(); selectedImage = null; });
+    } 
+    // CAS 3 : Autre erreur
+    else {
+      await showErrorPopup(
+        title: "Échec",
+        message: message,
       );
     }
   }
 
   String _formatSuccessMessage(String originalMsg, dynamic dataObj) {
-    String employeName = "";
-    if (dataObj != null && dataObj is Map) {
-      final civilite = dataObj["civilite"] ?? "";
-      final nom = dataObj["nom"] ?? dataObj["nom_employe"] ?? "";
-      final prenom = dataObj["prenom"] ?? dataObj["prenom_employe"] ?? "";
-      if (nom.toString().isNotEmpty) {
-        employeName = "$civilite $nom $prenom".trim();
-      }
-    }
-    if (employeName.isEmpty) {
-      if (originalMsg.contains(" pour ")) {
-        employeName = originalMsg.split(" pour ").last.trim();
-      } else if (originalMsg.contains(" de ")) {
-        employeName = originalMsg.split(" de ").last.trim();
-      }
-    }
-
     if (originalMsg.toLowerCase().contains("arriv")) {
-      return "Arrivée : Bienvenue et passez une agréable journée${employeName.isNotEmpty ? ' suivie de $employeName' : ''}".trim();
+      return "Bonne journée !";
     } else if (originalMsg.toLowerCase().contains("départ") || originalMsg.toLowerCase().contains("depart")) {
-      return "Départ : Au revoir et passez une agréable soirée${employeName.isNotEmpty ? ' suivie de $employeName' : ''}".trim();
+      return "Passez une agréable soirée !";
     }
     return originalMsg;
   }
@@ -546,7 +756,7 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: vert)),
+        Text(label, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: vert)),
         const SizedBox(height: 12),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -596,7 +806,7 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
             const SizedBox(height: 20),
             Text("Formulaire d'Enregistrement", style: TextStyle(fontSize: 28, color: vert, fontWeight: FontWeight.bold)),
             const SizedBox(height: 15),
-            Text("Veuillez remplir les informations ci-dessous", style: TextStyle(fontSize: 16, color: Colors.grey.shade700)),
+            Text("Veuillez remplir les informations ci-dessous", style: TextStyle(fontSize: 24, color: Colors.grey.shade700)),
             const SizedBox(height: 40),
             _bigInput(label: "N° Matricule / Numéro Téléphone", icon: Icons.badge_outlined, controller: matriculeCtrl),
             const SizedBox(height: 30),
@@ -616,7 +826,7 @@ class _ManualRegisterPageState extends State<ManualRegisterPage> with SingleTick
                           children: [
                             Icon(Icons.camera_alt_outlined, size: 48, color: orange),
                             const SizedBox(height: 10),
-                            const Text("Appuyer pour prendre une photo", style: TextStyle(fontSize: 16, color: Colors.grey)),
+                            const Text("Appuyer pour prendre une photo", style: TextStyle(fontSize: 24, color: Colors.grey)),
                           ],
                         ),
                       )

@@ -102,7 +102,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   child: Text(
                     _index == 2 ? "Commencer" : "Suivant",
                     style: const TextStyle(
-                      fontSize: 17,
+                      fontSize: 24,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -116,7 +116,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               onTap: () => Navigator.pushReplacementNamed(context, "/home"),
               child: const Padding(
                 padding: EdgeInsets.only(bottom: 20),
-                child: Text("Passer", style: TextStyle(fontSize: 14, color: Colors.grey)),
+                child: Text("Passer", style: TextStyle(fontSize: 32, color: Colors.grey)),
               ),
             ),
           ],
@@ -156,7 +156,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             title,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              fontSize: 22,
+              fontSize: 32,
               fontWeight: FontWeight.bold,
               color: Color(0xFF3CA55C),
             ),
@@ -166,7 +166,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             description,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              fontSize: 15,
+              fontSize: 32,
               color: Color(0xFF555555),
               height: 1.5,
             ),
